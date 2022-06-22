@@ -1,6 +1,10 @@
 <?php
 
-namespace exam;
+namespace exam\Model;
+
+use exam\Repository;
+
+//require '../Classes/Repository.php';
 
 class Employee extends Repository
 {
@@ -21,12 +25,17 @@ class Employee extends Repository
 
     }
 
+    public function getOneEmployee($employeeId)
+    {
+        $sql = mysqli_query($this->mysql, "SELECT * FROM exam_2022.tasks2employees WHERE employers_id = '$employeeId'");
+        return mysqli_fetch_all($sql, MYSQLI_ASSOC);
+    }
 
     /* -------------------- Get Employees task by ID ----------------------------------- */
-    public function getEmployeesTask($employeeId): array
+    public function getTaskEmployees($taskId): array
     {
-        $sql = mysqli_query($this->mysql, "SELECT * FROM exam_2022.employers
-   e LEFT JOIN exam_2022.tasks2employees t2e on t2e.employers_id= e.id  WHERE t2e.tasks_id ='$employeeId'");
+        $sql = mysqli_query($this->mysql, "SELECT * FROM exam_2022.tasks2employees
+    WHERE tasks_id ='$taskId'");
         return mysqli_fetch_all($sql, MYSQLI_ASSOC);
     }
 
@@ -34,16 +43,20 @@ class Employee extends Repository
     /* -------------------- Add Employees to the task ----------------------------------- */
     public function addEmployeesToTask($employeeId, $taskId): bool|string
     {
-        $employee = $this->getEmployeesTask($employeeId);
-        var_dump($employee);
+        $sql = "INSERT INTO exam_2022.tasks2employees  (employers_id, tasks_id) VALUES ('$employeeId', '$taskId')";
+        mysqli_query($this->mysql, $sql);
+        echo 'Employees successfully added';
 
-        if (count($employee) > 3) {
-            echo 'Task can not have more than three employees';
-        } else {
-            $sql = "INSERT INTO exam_2022.tasks2employees  (employers_id, tasks_id) VALUES ('$employeeId', '$taskId')";
-            mysqli_query($this->mysql, $sql);
-            echo 'Employees successfully added';
-        }
         return true;
+    }
+
+    public function getEmployeeBusy($taskId, $employeeId): array
+    {
+        $sql = mysqli_query($this->mysql, "SELECT * FROM exam_2022.tasks2employees
+t2e LEFT JOIN exam_2022.employers e on e.id = t2e.employers_id
+LEFT JOIN exam_2022.tasks t on t.id = t2e.tasks_id
+WHERE tasks_id = $taskId and employers_id = $employeeId
+");
+        return mysqli_fetch_all($sql, MYSQLI_ASSOC);
     }
 }

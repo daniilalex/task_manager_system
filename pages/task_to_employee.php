@@ -1,26 +1,33 @@
 <?
 include '../includes/bootstrap.php';
 
-use exam\Task;
-use exam\Employee;
+use exam\Model\Employee as Employee;
+use exam\Model\Task as Task;
 
-require '../Classes/Task.php';
-require '../Classes/Employee.php';
+require_once '../Classes/Task.php';
+require_once '../Classes/Employee.php';
 
-$eRepo = new Employee();
+$objectAdmin = new Employee();
 $repo = new Task();
-$employees = $eRepo->getEmployees();
+$employees = $objectAdmin->getEmployees();
 $tasks = $repo->getTasks();
-//var_dump($employees, $tasks);
+//$busy = $objectAdmin->getEmployeeBusy();
+var_dump($employees);
 
-if (isset($_POST['employees'])) {
+if (isset($_POST['add'])) {
     $employee = $_POST['employees'];
     $task = $_POST['tasks'];
+    $dbEmployees = $objectAdmin->getTaskEmployees($task);
+    $errors = [];
 
-    foreach ($employee as $num) {
-        $eRepo->addEmployeesToTask($num, $task);
+    if (count($employee) + count($dbEmployees) > 3) {
+        $errors[] = '<p style="color: red">You can not add more than 3 employees to the task</p>';
+    } else {
+        foreach ($employee as $num) {
+            $objectAdmin->addEmployeesToTask($num, $task);
+        }
+        header("Refresh:10");
     }
-    header("Refresh:10");
 
 }
 
@@ -29,7 +36,7 @@ if (isset($_POST['employees'])) {
     <div class="container">
         <div class="content">
             <h1 class="h-index">Add task to employees</h1>
-            <form class="form" action="add_task.php" method="post">
+            <form class="form" action="task_to_employee.php" method="post">
 
                 <div class="row g-3 align-items-center">
 
@@ -53,11 +60,11 @@ if (isset($_POST['employees'])) {
                 </div>
 
                 <br>
-                <input type="submit" class="btn btn-primary" value="Create task">
+                <input type="submit" name="add" class="btn btn-primary" value="Add">
                 <? if (isset($errors)) {
                     foreach ($errors as $error) { ?>
                         <ul>
-                            <? echo $error ?>
+                            <?= $error ?>
                         </ul>
                     <? }
                 } ?>
