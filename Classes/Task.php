@@ -1,6 +1,7 @@
 <?php
 
 namespace exam;
+require '../Classes/Repository.php';
 
 class Task extends Repository
 {
@@ -48,5 +49,19 @@ class Task extends Repository
     LEFT JOIN exam_2022.employers e on e.id = tasks2employees.employers_id
     LEFT JOIN exam_2022.tasks t on t.id = tasks2employees.tasks_id");
         return mysqli_fetch_all($assignments, MYSQLI_ASSOC);
+    }
+
+    public function completed($taskId): bool
+    {
+        $sql = "UPDATE exam_2022.tasks SET exam_2022.tasks.status = 1 WHERE id = $taskId";
+        mysqli_query($this->mysql, $sql);
+        return true;
+    }
+
+    public function deleted($taskId): bool
+    {
+        $sql = "UPDATE exam_2022.tasks SET exam_2022.tasks.status = 2 WHERE id = $taskId";
+        mysqli_query($this->mysql, $sql);
+        return true;
     }
 }
