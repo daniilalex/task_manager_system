@@ -9,16 +9,21 @@ require_once '../Classes/Employee.php';
 
 $objectAdmin = new Employee();
 $repo = new Task();
+
 $employees = $objectAdmin->getEmployees();
 $tasks = $repo->getTasks();
-//$busy = $objectAdmin->getEmployeeBusy();
-var_dump($employees);
+
 
 if (isset($_POST['add'])) {
     $employee = $_POST['employees'];
     $task = $_POST['tasks'];
     $dbEmployees = $objectAdmin->getTaskEmployees($task);
     $errors = [];
+
+//    $oneTaskEmployees = $objectAdmin->getEmployeeOneTask($task);
+//    $multiTaskDbEmployees = $objectAdmin->getEmployeesMultiTask($task);
+//    var_dump($dbEmployees, $multiTaskDbEmployees, $oneTaskEmployees);
+    
 
     if (count($employee) + count($dbEmployees) > 3) {
         $errors[] = '<p style="color: red">You can not add more than 3 employees to the task</p>';
@@ -75,5 +80,4 @@ if (isset($_POST['add'])) {
     </div>
 
 <? include '../includes/footer.php';
-
 

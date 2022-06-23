@@ -8,6 +8,7 @@ use exam\Repository;
 
 class Employee extends Repository
 {
+    /* -------------------- Add Employee to database ----------------------------------- */
     public function addEmployee($name, $surname, $multiTask)
     {
         $firstName = $this->testFormInputData($name);
@@ -23,12 +24,6 @@ class Employee extends Repository
         $sql = mysqli_query($this->mysql, "SELECT * FROM exam_2022.employers");
         return mysqli_fetch_all($sql, MYSQLI_ASSOC);
 
-    }
-
-    public function getOneEmployee($employeeId)
-    {
-        $sql = mysqli_query($this->mysql, "SELECT * FROM exam_2022.tasks2employees WHERE employers_id = '$employeeId'");
-        return mysqli_fetch_all($sql, MYSQLI_ASSOC);
     }
 
     /* -------------------- Get Employees task by ID ----------------------------------- */
@@ -48,15 +43,5 @@ class Employee extends Repository
         echo 'Employees successfully added';
 
         return true;
-    }
-
-    public function getEmployeeBusy($taskId, $employeeId): array
-    {
-        $sql = mysqli_query($this->mysql, "SELECT * FROM exam_2022.tasks2employees
-t2e LEFT JOIN exam_2022.employers e on e.id = t2e.employers_id
-LEFT JOIN exam_2022.tasks t on t.id = t2e.tasks_id
-WHERE tasks_id = $taskId and employers_id = $employeeId
-");
-        return mysqli_fetch_all($sql, MYSQLI_ASSOC);
     }
 }
