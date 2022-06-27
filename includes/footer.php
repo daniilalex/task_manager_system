@@ -1,5 +1,5 @@
 <div class="footer">
-    &copy 2022
+    &copy 2022 All rights reserved
 </div>
 
 

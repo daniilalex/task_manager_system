@@ -1,27 +1,17 @@
 <?php
 
-namespace exam\Model;
+namespace exam;
 
-use exam\Repository;
 
 //require '../Classes/Repository.php';
 
 class Employee extends Repository
 {
-    /* -------------------- Add Employee to database ----------------------------------- */
-    public function addEmployee($name, $surname, $multiTask)
-    {
-        $firstName = $this->testFormInputData($name);
-        $lastName = $this->testFormInputData($surname);
-        $sql = "INSERT INTO exam_2022.employers (first_name,last_name, multiply_tasks) VALUES ('$firstName', '$lastName', '$multiTask')";
-        mysqli_query($this->mysql, $sql);
-        header('Location: ../../main.php');
-    }
 
     /* -------------------- Get employees ----------------------------------- */
     public function getEmployees(): array
     {
-        $sql = mysqli_query($this->mysql, "SELECT * FROM exam_2022.employers");
+        $sql = mysqli_query($this->mysql, "SELECT * FROM exam_2022.employees");
         return mysqli_fetch_all($sql, MYSQLI_ASSOC);
 
     }
@@ -38,7 +28,7 @@ class Employee extends Repository
     /* -------------------- Add Employees to the task ----------------------------------- */
     public function addEmployeesToTask($employeeId, $taskId): bool|string
     {
-        $sql = "INSERT INTO exam_2022.tasks2employees  (employers_id, tasks_id) VALUES ('$employeeId', '$taskId')";
+        $sql = "INSERT INTO exam_2022.tasks2employees  (employee_id, tasks_id) VALUES ('$employeeId', '$taskId')";
         mysqli_query($this->mysql, $sql);
         echo 'Employees successfully added';
 

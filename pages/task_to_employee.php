@@ -1,8 +1,9 @@
 <?
 include '../includes/bootstrap.php';
 
-use exam\Model\Employee as Employee;
-use exam\Model\Task as Task;
+
+use exam\Task;
+use exam\Employee;
 
 require_once '../Classes/Task.php';
 require_once '../Classes/Employee.php';
@@ -20,11 +21,6 @@ if (isset($_POST['add'])) {
     $dbEmployees = $objectAdmin->getTaskEmployees($task);
     $errors = [];
 
-//    $oneTaskEmployees = $objectAdmin->getEmployeeOneTask($task);
-//    $multiTaskDbEmployees = $objectAdmin->getEmployeesMultiTask($task);
-//    var_dump($dbEmployees, $multiTaskDbEmployees, $oneTaskEmployees);
-    
-
     if (count($employee) + count($dbEmployees) > 3) {
         $errors[] = '<p style="color: red">You can not add more than 3 employees to the task</p>';
     } else {
@@ -40,21 +36,29 @@ if (isset($_POST['add'])) {
 
     <div class="container">
         <div class="content">
-            <h1 class="h-index">Add task to employees</h1>
+            <h2 class="h-index">Add task to employees</h2>
+            <div class="links">
+                <div class="link-a">
+                    <a href="assignments.php" class="btn btn-light">Assignments</a>
+                </div>
+                <div class="link-a">
+                    <a href="archive.php" class="btn btn-light">Archive</a>
+                </div>
+            </div>
             <form class="form" action="task_to_employee.php" method="post">
 
                 <div class="row g-3 align-items-center">
 
 
-                    <select class="form-select" name="employees[]" multiple="multiple">
-                        <option>Choose Employee</option>
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="employees[]"
+                            multiple="multiple">
                         <? foreach ($employees as $employee) {
                             ?>
                             <option value="<?= $employee['id'] ?>"><?= $employee['first_name'] ?> <?= $employee['last_name'] ?></option>
                         <? } ?>
 
                     </select>
-                    <select class="form-select" name="tasks">
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="tasks">
                         <option>Choose tasks</option>
                         <? foreach ($tasks as $task) {
                             ?>

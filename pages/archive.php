@@ -26,7 +26,7 @@ $total_records = mysqli_fetch_array($result_count);
 $total_records = $total_records['total_records'];
 
 $total_no_of_pages = ceil($total_records / $total_records_per_page);
-$second_last = $total_no_of_pages - 1; // total pages minus 1
+$second_last = $total_no_of_pages - 1;
 $results = mysqli_query(
     $repo->mysql,
     "SELECT t.*, GROUP_CONCAT(e.first_name, ' ', e.last_name) AS all_employees
@@ -37,7 +37,6 @@ $results = mysqli_query(
         GROUP BY t.id LIMIT $offset, $total_records_per_page"
 );
 ?>
-
 
     <div class="container">
         <div class="content">

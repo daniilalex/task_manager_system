@@ -1,10 +1,12 @@
 <?
-require '../Classes/Employee.php';
 include '../includes/bootstrap.php';
 
-use exam\Employee;
+use exam\Task;
 
-$obj_admin = new Employee();
+require '../Classes/Task.php';
+
+$obj_admin = new Task();
+
 
 if (isset($_POST['name'])) {
     $name = $_POST['name'];
@@ -23,37 +25,47 @@ if (isset($_POST['name'])) {
 } ?>
 
     <div class="container">
-        <h1 class="h-index">New employee</h1>
-        <form action="create_employee.php" method="post">
-
-            <div class="row g-3 align-items-center">
-
-                <input type="text" class="form-control" name="name" placeholder="First name">
-
-                <input type="text" class="form-control" name="lastname" placeholder="Last name">
+        <div class="content">
+            <h2 class="h-index">New employee</h2>
+            <div class="links">
+                <div class="link-a">
+                    <a href="assignments.php" class="btn btn-light">Assignments</a>
+                </div>
+                <div class="link-a">
+                    <a href="archive.php" class="btn btn-light">Archive</a>
+                </div>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="multi_task">
-                <label class="form-check-label" for="multi_task">
-                    Can
-                    work on multiple assignments at once
-                </label>
-            </div>
-            <br>
+            <form action="create_employee.php" method="post">
 
-            <input type="submit" class="btn btn-primary" value="Add employer">
+                <div class="row g-3 align-items-center">
 
-        </form>
-        <? if (isset($errors)) {
-            foreach ($errors as $error) { ?>
+                    <input type="text" class="form-control" name="name" placeholder="First name">
 
-                <ul>
-                    <? echo $error ?>
-                </ul>
+                    <input type="text" class="form-control" name="lastname" placeholder="Last name">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="multi_task">
+                    <label class="form-check-label" for="multi_task">
+                        Can
+                        work on multiple assignments at once
+                    </label>
+                </div>
+                <br>
 
-            <? }
-        } ?>
-        <a href="main.php" class="btn btn-light">Go back</a>
+                <input type="submit" class="btn btn-primary" value="Add employer">
+
+            </form>
+            <? if (isset($errors)) {
+                foreach ($errors as $error) { ?>
+
+                    <ul>
+                        <? echo $error ?>
+                    </ul>
+
+                <? }
+            } ?>
+            <a href="main.php" class="btn btn-light">Go back</a>
+        </div>
     </div>
 
 <? include '../includes/footer.php';
