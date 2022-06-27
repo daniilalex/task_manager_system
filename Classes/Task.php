@@ -1,11 +1,15 @@
 <?php
 
 namespace exam;
+
 require '../Classes/Repository.php';
 
 class Task extends Repository
 {
+
+
     /* -------------------- Get tasks ----------------------------------- */
+
     public function getTasks(): array /// posts , articles, tasks
     {
         $sql = mysqli_query($this->mysql, "SELECT * FROM exam_2022.tasks");
@@ -13,10 +17,10 @@ class Task extends Repository
     }
 
     /* -------------------- Get task by ID ----------------------------------- */
-    public function getTaskEmployees($taskId): array /// posts , articles, tasks
+    public function getTaskById($taskId): array /// posts , articles, tasks
     {
-        $sql = mysqli_query($this->mysql, "SELECT * FROM exam_2022.tasks
-    t LEFT JOIN exam_2022.tasks2employees t2e on t.id = t2e.tasks_id  WHERE id = '$taskId'");
+        $sql = mysqli_query($this->mysql, "SELECT * FROM exam_2022.tasks2employees
+    WHERE tasks_id = '$taskId'");
         return mysqli_fetch_all($sql, MYSQLI_ASSOC);
     }
 
@@ -30,38 +34,54 @@ class Task extends Repository
 
     }
 
-    /* -------------------- Add task to employees ----------------------------------- */
-    public function addTasks2Employee($employeeId, $taskId): bool|string
+    /* -------------------- Complete task ----------------------------------- */
+    public function completed($taskId, $date): bool
     {
-        $task = $this->getTaskEmployees($taskId);
-        if (count($task) > 3) {
-            echo 'Employee can not have more than three task';
-        } else {
-            $sql = "INSERT INTO exam_2022.tasks2employees  (employers_id, tasks_id) VALUES ('$employeeId', '$taskId')";
-            mysqli_query($this->mysql, $sql);
-        }
-        return true;
-    }
-
-    public function getAssignments(): array
-    {
-        $assignments = mysqli_query($this->mysql, "SELECT * FROM exam_2022.tasks2employees
-    LEFT JOIN exam_2022.employers e on e.id = tasks2employees.employers_id
-    LEFT JOIN exam_2022.tasks t on t.id = tasks2employees.tasks_id");
-        return mysqli_fetch_all($assignments, MYSQLI_ASSOC);
-    }
-
-    public function completed($taskId): bool
-    {
-        $sql = "UPDATE exam_2022.tasks SET exam_2022.tasks.status = 1 WHERE id = $taskId";
+        $sql = "UPDATE exam_2022.tasks SET exam_2022.tasks.status = 1, exam_2022.tasks.completed_at = '$date'
+WHERE id = $taskId";
         mysqli_query($this->mysql, $sql);
         return true;
     }
 
-    public function deleted($taskId): bool
+    /* -------------------- Delete task ----------------------------------- */
+    public function deleted($taskId, $date): bool
     {
-        $sql = "UPDATE exam_2022.tasks SET exam_2022.tasks.status = 2 WHERE id = $taskId";
+        $sql = "UPDATE exam_2022.tasks SET exam_2022.tasks.status = 2, exam_2022.tasks.completed_at = '$date'
+WHERE id = $taskId";
         mysqli_query($this->mysql, $sql);
         return true;
     }
+
+    /* -------------------- Get completed values ----------------------------------- */
+    public function getValuesToArchive(): array
+    {
+        $sql = mysqli_query($this->mysql, "SELECT t.*, GROUP_CONCAT(e.first_name, ' ', e.last_name) AS all_employees
+        FROM exam_2022.tasks2employees t2e
+        LEFT JOIN exam_2022.employees e on e.id = t2e.employee_id 
+        LEFT JOIN exam_2022.tasks t on t.id = t2e.tasks_id
+        WHERE status = '1'
+        GROUP BY t.id");
+        return mysqli_fetch_all($sql, MYSQLI_ASSOC);
+    }
+
+    public function addEmployee($name, $surname, $multiTask)
+    {
+        $firstName = $this->testFormInputData($name);
+        $lastName = $this->testFormInputData($surname);
+        $sql = "INSERT INTO exam_2022.employees (first_name,last_name, multiply_tasks) VALUES ('$firstName', '$lastName', '$multiTask')";
+        mysqli_query($this->mysql, $sql);
+        header('Location: ../../main.php');
+    }
+
+    /* -------------------- Get assignments values ----------------------------------- */
+    public function displayTask(): array
+    {
+        $sql = mysqli_query($this->mysql, "SELECT t.*,GROUP_CONCAT(e.first_name, ' ', e.last_name) as all_employees
+        FROM exam_2022.tasks2employees t2e
+        LEFT JOIN exam_2022.employees e on t2e.employee_id = e.id
+        LEFT JOIN exam_2022.tasks t on t2e.tasks_id = t.id
+        GROUP BY t.id");
+        return mysqli_fetch_all($sql, MYSQLI_ASSOC);
+    }
+
 }
