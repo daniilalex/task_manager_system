@@ -62,6 +62,11 @@ body .container .content table .table th {
     width: 100px;
 }
 
+body .container .content .pagination {
+    margin: 0 auto;
+    display: block;
+}
+
 body .footer {
     margin: 40px auto;
     display: table;
