@@ -2,24 +2,31 @@ body {
   .container {
     border: black 1px solid;
     border-radius: 5px;
-    width: 600px;
+    width: 700px;
     margin-top: 40px;
     background-color: white;
 
     .content {
-      margin: 20px;
+      margin: 20px auto;
+
 
       .h-log, .h-index {
         text-align: center;
       }
+
       .links {
         margin: 30px auto;
         display: flex;
         flex-wrap: wrap;
+        justify-content: space-between;
+        align-content: space-around;
+        border-radius: 5px;
+
         .link-a {
           border-radius: 10px;
           margin: 3px;
         }
+
         a:hover {
           background-color: whitesmoke;
           box-shadow: 2px 2px 5px lightblue;
@@ -31,11 +38,35 @@ body {
         width: 300px;
       }
 
+      .form-control {
+        width: 300px;
+      }
+
       .btn, .btn-primary {
         display: block;
         margin: 0 auto;
         width: 150px;
       }
+
+      .form-check {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0 0 16px;
+      }
+
+      table {
+        margin: 0 auto;
+
+
+        .table th {
+          width: 100px;
+        }
+      }
     }
+  }
+
+  .footer {
+    margin: 40px auto;
+    display: table;
   }
 }
