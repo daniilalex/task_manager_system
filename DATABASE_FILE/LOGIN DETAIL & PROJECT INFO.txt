@@ -1,0 +1,12 @@
+**Database Name: exam_2022**
+
+**Developed by Daniil Aleksejev**
+
+**Works on both PHP Version 7.4.12 and 8.1**
+
+
+**Employee Login Details**
+
+Email: manager@user.com
+Password: cao123
+
