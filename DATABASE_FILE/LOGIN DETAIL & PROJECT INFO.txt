@@ -5,7 +5,7 @@
 **Works on both PHP Version 7.4.12 and 8.1**
 
 
-**Link to project**
+**Link to the project**
 
 http://task.manager.local/index.php
 
