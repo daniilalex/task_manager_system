@@ -5,6 +5,10 @@
 **Works on both PHP Version 7.4.12 and 8.1**
 
 
+**Link to project**
+
+http://task.manager.local/index.php
+
 **Task manager system Login Details**
 
 Email: manager@user.com
