@@ -21,10 +21,15 @@ git clone git@github.com:daniilalex/task_manager_system.git
 - Create or choose(default) database on your pc local.
 - Open the migration.php file in the directory DATABASE_FILE.
 - Change or leave(default values) to your connection in the DATABASE_FILE/migration.php and Classes/Repository.php
-- Run the migration.php file in your IDE console.
+-
+    - Run the migration.php file in your IDE console.
+- Create or choose(default) seed file in the directory DATABASE_FILE/seeds.php
+-
+    - Run the seeds.php file in your IDE console.
 
 ```sh 
 php DATABASE_FILE/migration.php
+php DATABASE_FILE/seeds.php
 ```
 
 Verify the deployment by navigating to your server address in your preferred browser.
