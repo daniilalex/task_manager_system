@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2022 at 05:24 PM
+-- Generation Time: Jun 27, 2022 at 08:19 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -50,7 +50,10 @@ VALUES (19, 'Nina', 'Kravitz', 'on'),
        (26, 'Margarite', 'Tacher', ''),
        (27, 'Maria', 'Gonzales', ''),
        (28, 'Amanda', 'Taylor', 'on'),
-       (29, 'Tom', 'Green Jr.', '');
+       (29, 'Tom', 'Green Jr.', ''),
+       (30, 'Ozzy', 'Bold', 'on'),
+       (31, 'Cristopher', 'Lambert', ''),
+       (32, 'Nicolas', 'Turrel', '');
 
 -- --------------------------------------------------------
 
@@ -104,8 +107,10 @@ VALUES (24, 'Data entry', '2022-06-19 20:32:08', 1, '2022-06-27 15:08:35'),
        (29, 'Make a code debugging', '2022-06-19 20:34:49', 1, '2022-06-27 15:08:37'),
        (30, 'Create new form for visitors', '2022-06-19 20:35:11', 1, '2022-06-27 15:08:38'),
        (31, 'Create a new modal for tasks', '2022-06-19 20:35:48', 1, '2022-06-27 15:08:38'),
-       (32, 'Check profit sum', '2022-06-27 11:22:35', 1, '2022-06-27 15:11:04'),
-       (33, 'Collect money for the b-day', '2022-06-27 12:18:18', 0, NULL);
+       (32, 'Check profit sum', '2022-06-27 11:22:35', 1, '2022-06-27 20:04:46'),
+       (33, 'Collect money for the b-day', '2022-06-27 12:18:18', 1, '2022-06-27 20:04:44'),
+       (34, 'Make a presentation', '2022-06-27 17:05:41', 1, '2022-06-27 20:05:51'),
+       (35, 'Make excel table', '2022-06-27 17:07:52', 1, '2022-06-27 20:08:06');
 
 -- --------------------------------------------------------
 
@@ -141,11 +146,15 @@ VALUES (24, 21),
        (29, 22),
        (29, 25),
        (30, 25),
+       (30, 28),
        (31, 27),
        (32, 22),
        (32, 25),
        (32, 28),
-       (33, 29);
+       (33, 29),
+       (33, 30),
+       (34, 31),
+       (35, 32);
 
 --
 -- Indexes for dumped tables
@@ -184,7 +193,7 @@ ALTER TABLE `tasks2employees`
 --
 ALTER TABLE `employees`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
-    AUTO_INCREMENT = 30;
+    AUTO_INCREMENT = 33;
 
 --
 -- AUTO_INCREMENT for table `manager`
@@ -198,7 +207,7 @@ ALTER TABLE `manager`
 --
 ALTER TABLE `tasks`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
-    AUTO_INCREMENT = 34;
+    AUTO_INCREMENT = 36;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT = @OLD_CHARACTER_SET_CLIENT */;

@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "exam_2022";
+$dbname = "";
 
 //-- Create connection
 $mysql = new mysqli();

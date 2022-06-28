@@ -1,75 +1,61 @@
 body .container {
-    border: black 1px solid;
-    border-radius: 5px;
-    width: 700px;
-    margin-top: 40px;
-    background-color: white;
+  border: black 1px solid;
+  border-radius: 5px;
+  width: 700px;
+  margin-top: 40px;
+  background-color: white;
 }
-
 body .container .content {
-    margin: 20px auto;
+  margin: 20px auto;
 }
-
 body .container .content .h-log, body .container .content .h-index {
-    text-align: center;
+  text-align: center;
 }
-
 body .container .content .links {
-    margin: 30px auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-content: space-around;
-    border-radius: 5px;
+  margin: 30px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-around;
+  border-radius: 5px;
 }
-
 body .container .content .links .link-a {
-    border-radius: 10px;
-    margin: 3px;
+  border-radius: 10px;
+  margin: 3px;
 }
-
 body .container .content .links a:hover {
-    background-color: whitesmoke;
-    box-shadow: 2px 2px 5px lightblue;
+  background-color: whitesmoke;
+  box-shadow: 2px 2px 5px lightblue;
 }
-
 body .container .content .row, body .container .content .g-3 {
-    margin: 0 auto;
-    width: 300px;
+  margin: 0 auto;
+  width: 300px;
 }
-
 body .container .content .form-control {
-    width: 300px;
+  width: 300px;
 }
-
 body .container .content .btn, body .container .content .btn-primary {
-    display: block;
-    margin: 0 auto;
-    width: 150px;
+  display: block;
+  margin: 0 auto;
+  width: 150px;
 }
-
 body .container .content .form-check {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0 0 16px;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 0 16px;
 }
-
 body .container .content table {
-    margin: 0 auto;
+  margin: 0 auto;
 }
-
 body .container .content table .table th {
-    width: 100px;
+  width: 100px;
 }
-
 body .container .content .pagination {
-    margin: 0 auto;
-    display: block;
+  margin: 0 auto;
 }
-
 body .footer {
-    margin: 40px auto;
-    display: table;
+  margin: 40px auto;
+  display: table;
 }
 
 /*# sourceMappingURL=style.css.map */

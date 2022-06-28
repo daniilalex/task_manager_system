@@ -1,6 +1,7 @@
 <?
 
 namespace exam;
+
 //Represents a connection between PHP and a database server.
 
 use mysqli;
@@ -67,7 +68,7 @@ class Repository
         return fpassthru($f);
 
     }
-    
+
 }
 
 
