@@ -80,7 +80,7 @@ WHERE id = $taskId";
         FROM exam_2022.tasks2employees t2e
         LEFT JOIN exam_2022.employees e on t2e.employee_id = e.id
         LEFT JOIN exam_2022.tasks t on t2e.tasks_id = t.id
-        GROUP BY t.id");
+        GROUP BY created_at");
         return mysqli_fetch_all($sql, MYSQLI_ASSOC);
     }
 
