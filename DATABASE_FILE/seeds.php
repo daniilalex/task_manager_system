@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "";
+$servername = 'localhost';
+$username ='"root';
+$password = '';
+$dbname = 'exam_2022';
 
 $mysql = new mysqli();
 
@@ -28,19 +28,19 @@ VALUES (1, 'Nina', 'Kratzer', 'on'),
        (13, 'Nicolas', 'Turret', '')";
 
 
-$sqlTasks = "INSERT INTO `tasks` (`id`, `title`, `created_at`, `status`, `completed_at`)
-VALUES (1, 'Data entry', '2022-06-19 20:32:08', 0, '2022-06-27 15:08:35'),
-       (2, 'Virtual meeting', '2022-06-19 20:32:21', 0, '2022-06-27 15:08:35'),
-       (3, 'Filing', '2022-06-19 20:32:33', 0, '2022-06-27 15:08:36'),
-       (4, 'Communications', '2022-06-19 20:32:49', 0, '2022-06-27 15:08:36'),
-       (5, 'Get a drink', '2022-06-19 20:34:03', 0, '2022-06-27 15:08:37'),
-       (6, 'Make a code debugging', '2022-06-19 20:34:49', 0, '2022-06-27 15:08:37'),
-       (7, 'Create new form for visitors', '2022-06-19 20:35:11', 0, '2022-06-27 15:08:38'),
-       (8, 'Create a new modal for tasks', '2022-06-19 20:35:48', 0, '2022-06-27 15:08:38'),
-       (9, 'Check profit sum', '2022-06-27 11:22:35', 0, '2022-06-27 20:04:46'),
-       (10, 'Collect money for the b-day', '2022-06-27 12:18:18', 0, '2022-06-27 20:04:44'),
-       (11, 'Make a presentation', '2022-06-27 17:05:41', 1, '2022-06-27 20:05:51'),
-       (12, 'Make excel table', '2022-06-27 17:07:52', 1, '2022-06-27 20:08:06')";
+$sqlTasks = "INSERT INTO `tasks` (`id`, `title`, `status`, `completed_at`)
+VALUES (1, 'Data entry',  0, '2022-06-27 15:08:35'),
+       (2, 'Virtual meeting',  0, '2022-06-27 15:08:35'),
+       (3, 'Filing',  0, '2022-06-27 15:08:36'),
+       (4, 'Communications',  0, '2022-06-27 15:08:36'),
+       (5, 'Get a drink',  0, '2022-06-27 15:08:37'),
+       (6, 'Make a code debugging',  0, '2022-06-27 15:08:37'),
+       (7, 'Create new form for visitors',  0, '2022-06-27 15:08:38'),
+       (8, 'Create a new modal for tasks',  0, '2022-06-27 15:08:38'),
+       (9, 'Check profit sum',  0, '2022-06-27 20:04:46'),
+       (10, 'Collect money for the b-day',  0, '2022-06-27 20:04:44'),
+       (11, 'Make a presentation',  1, '2022-06-27 20:05:51'),
+       (12, 'Make excel table',  1, '2022-06-27 20:08:06')";
 
 
 if ($mysql->query($sqlEmployee) === TRUE) {

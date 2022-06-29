@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "exam_2022";
+$servername = 'localhost';
+$username = 'root';
+$password = '';
+$dbname = 'exam_2022';
 
 //-- Create connection
 $mysql = new mysqli();
@@ -41,7 +41,6 @@ mysqli_query($mysql, "DROP TABLE IF EXISTS tasks");
 mysqli_query($mysql, "CREATE TABLE `tasks` (
     `id` int(11)  AUTO_INCREMENT primary key NOT NULL,
     `title` varchar(225) NOT NULL,
-    `created_at`timestamp NOT NULL DEFAULT current_timestamp(),
     `status` int(11) NOT NULL DEFAULT 0 COMMENT '0 = in process, 1 = completed, 2 = deleted',
     `completed_at` datetime DEFAULT NULL
 ) ENGINE = InnoDB
@@ -53,5 +52,6 @@ mysqli_query($mysql, "DROP TABLE IF EXISTS tasks2employees");
 mysqli_query($mysql, "CREATE TABLE `tasks2employees` (
 `tasks_id` int(11) UNSIGNED NOT NULL,
 `employee_id` int(11) UNSIGNED NOT NULL,
+`created_at`timestamp NOT NULL DEFAULT current_timestamp(),
 PRIMARY KEY (`tasks_id`,`employee_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
