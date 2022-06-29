@@ -20,6 +20,7 @@ if ($action === 'complete') {
 
 $assignments = $objectAdmin->displayTask();
 
+
 ?>
 
     <div class="container">

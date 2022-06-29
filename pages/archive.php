@@ -29,7 +29,7 @@ $total_no_of_pages = ceil($total_records / $total_records_per_page);
 $second_last = $total_no_of_pages - 1;
 $results = mysqli_query(
     $repo->mysql,
-    "SELECT t.*, GROUP_CONCAT(e.first_name, ' ', e.last_name) AS all_employees
+    "SELECT t.*, GROUP_CONCAT(e.first_name, ' ', e.last_name) AS all_employees, created_at
         FROM exam_2022.tasks2employees t2e
         LEFT JOIN exam_2022.employees e on e.id = t2e.employee_id 
         LEFT JOIN exam_2022.tasks t on t.id = t2e.tasks_id
