@@ -19,15 +19,31 @@ if (isset($_POST['add'])) {
     $employee = $_POST['employees'];
     $task = $_POST['tasks'];
     $dbEmployees = $objectAdmin->getTaskEmployees($task);
+    $dbTasks = $objectAdmin->getEmployeeOnTask($task);
+    $date = date('Y-m-d H:i:s');
     $errors = [];
+
+
+
 
     if (count($employee) + count($dbEmployees) > 3) {
         $errors[] = '<p style="color: red">You can not add more than 3 employees to the task</p>';
     } else {
         foreach ($employee as $num) {
-            $objectAdmin->addEmployeesToTask($num, $task);
+
+            $employeeOnTask = $objectAdmin->getEmployeeMultiTask($num);
+            $dbTasks = $objectAdmin->getEmployeeOnTask($num);
+
+            if ($employeeOnTask) {
+                $objectAdmin->addEmployeesToTask($num, $task, $date);
+            } elseif (count($dbTasks) < 1) {
+                $objectAdmin->addEmployeesToTask($num, $task, $date);
+            } else {
+
+                $errors[] = '<p style="color: red">You can not add more than 1 task to this employee</p>';
+            }
         }
-        header("Refresh:10");
+//        header("Refresh:10");
     }
 
 }

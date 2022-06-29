@@ -55,11 +55,11 @@ WHERE id = $taskId";
     /* -------------------- Get completed values ----------------------------------- */
     public function getValuesToArchive(): array
     {
-        $sql = mysqli_query($this->mysql, "SELECT t.*, GROUP_CONCAT(e.first_name, ' ', e.last_name) AS all_employees
+        $sql = mysqli_query($this->mysql, "SELECT t.*, GROUP_CONCAT(e.first_name, ' ', e.last_name) AS all_employees, created_at
         FROM exam_2022.tasks2employees t2e
         LEFT JOIN exam_2022.employees e on e.id = t2e.employee_id 
         LEFT JOIN exam_2022.tasks t on t.id = t2e.tasks_id
-        WHERE status = '1'
+        WHERE status = 1
         GROUP BY t.id");
         return mysqli_fetch_all($sql, MYSQLI_ASSOC);
     }
@@ -76,7 +76,7 @@ WHERE id = $taskId";
     /* -------------------- Get assignments values ----------------------------------- */
     public function displayTask(): array
     {
-        $sql = mysqli_query($this->mysql, "SELECT t.*,GROUP_CONCAT(e.first_name, ' ', e.last_name) as all_employees
+        $sql = mysqli_query($this->mysql, "SELECT t.*,GROUP_CONCAT(e.first_name, ' ', e.last_name) as all_employees, created_at
         FROM exam_2022.tasks2employees t2e
         LEFT JOIN exam_2022.employees e on t2e.employee_id = e.id
         LEFT JOIN exam_2022.tasks t on t2e.tasks_id = t.id

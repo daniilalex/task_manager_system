@@ -24,14 +24,33 @@ class Employee extends Repository
         return mysqli_fetch_all($sql, MYSQLI_ASSOC);
     }
 
+    public function getEmployeeOnTask($employeeId): array
+    {
+        $sql = mysqli_query($this->mysql, "SELECT * FROM exam_2022.tasks2employees
+    WHERE employee_id ='$employeeId'");
+        return mysqli_fetch_all($sql, MYSQLI_ASSOC);
+    }
+
+    public function getEmployeeMultiTask($employeeId): array
+    {
+        $sql = mysqli_query($this->mysql, "SELECT * FROM exam_2022.tasks2employees t2e 
+    LEFT JOIN exam_2022.employees e on e.id = t2e.employee_id
+    WHERE e.multiply_tasks = 'on'
+    AND employee_id = $employeeId");
+        return mysqli_fetch_all($sql, MYSQLI_ASSOC);
+    }
+
 
     /* -------------------- Add Employees to the task ----------------------------------- */
-    public function addEmployeesToTask($employeeId, $taskId): bool|string
+    public function addEmployeesToTask($employeeId, $taskId, $date): bool|string
     {
-        $sql = "INSERT INTO exam_2022.tasks2employees  (employee_id, tasks_id) VALUES ('$employeeId', '$taskId')";
+        $sql = "INSERT INTO exam_2022.tasks2employees  (employee_id, tasks_id, created_at) VALUES ('$employeeId', '$taskId', '$date')";
         mysqli_query($this->mysql, $sql);
         echo 'Employees successfully added';
 
         return true;
     }
+
+
+
 }
