@@ -21,7 +21,7 @@ $next_page = $page_no + 1;
 $adjacents = "2";
 
 $result_count = mysqli_query($repo->mysql, "SELECT COUNT(*) AS total_records
-        FROM exam_2022.tasks2employees");
+        FROM tasks2employees");
 $total_records = mysqli_fetch_array($result_count);
 $total_records = $total_records['total_records'];
 
@@ -30,9 +30,9 @@ $second_last = $total_no_of_pages - 1;
 $results = mysqli_query(
     $repo->mysql,
     "SELECT t.*, GROUP_CONCAT(e.first_name, ' ', e.last_name) AS all_employees, created_at
-        FROM exam_2022.tasks2employees t2e
-        LEFT JOIN exam_2022.employees e on e.id = t2e.employee_id 
-        LEFT JOIN exam_2022.tasks t on t.id = t2e.tasks_id
+        FROM tasks2employees t2e
+        LEFT JOIN employees e on e.id = t2e.employee_id 
+        LEFT JOIN tasks t on t.id = t2e.tasks_id
         WHERE status = '1'
         GROUP BY t.id LIMIT $offset, $total_records_per_page"
 );

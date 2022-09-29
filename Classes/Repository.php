@@ -8,17 +8,18 @@ use mysqli;
 class Repository
 {
     public mysqli|null|false $mysql;
+    private $dbname = 'task_manager';
 
     public function __construct()
     {
-        $this->mysql = mysqli_connect('localhost', 'root', '', 'exam_2022');
+        $dbname = $this->dbname;
+        $this->mysql = mysqli_connect('localhost', 'root', '', 'task_manager');
+        mysqli_select_db($this->mysql, $dbname);
 
         if ($this->mysql->connect_error) {
             echo 'Error number: ' . $this->mysql->connect_errno;
             echo 'Error: ' . $this->mysql->connect_error;
-        } else {
-            echo 'Host info: ' . $this->mysql->host_info;
-        }
+        } 
 
     }
 
@@ -67,7 +68,7 @@ class Repository
         return fpassthru($f);
 
     }
-    
+
 }
 
 

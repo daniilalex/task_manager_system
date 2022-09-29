@@ -1,11 +1,10 @@
-<?
-include 'includes/bootstrap.php';
+<? 
 
 if (isset($_POST['email'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $errors = [];
-
+    
     if (empty($email) || empty($password)) {
         $errors[] = '<p style="color: red">There are empty spaces</p>';
     }
@@ -15,13 +14,14 @@ if (isset($_POST['email'])) {
     if (!preg_match('/[A-Za-z]/', $password) || !preg_match('/[0-9]/', $password)) {
         $errors[] = '<p style="color: red">Must be letters and numbers</p>';
     }
-
+    
     if (empty($errors)) {
         session_start();
-        $email = $_SESSION['email'];
+        $_SESSION['email'] = $email;
         header('Location: /pages/main.php');
     }
 }
+include 'includes/bootstrap.php';
 ?>
 
 

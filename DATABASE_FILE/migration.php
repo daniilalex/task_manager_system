@@ -2,11 +2,10 @@
 $servername = 'localhost';
 $username = 'root';
 $password = '';
-$dbname = 'exam_2022';
+$dbname = 'task_manager';
 
 //-- Create connection
 $mysql = new mysqli();
-
 $mysql = mysqli_connect($servername, $username, $password, $dbname);
 mysqli_select_db($mysql, $dbname);
 

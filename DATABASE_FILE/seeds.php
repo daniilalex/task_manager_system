@@ -2,7 +2,7 @@
 $servername = 'localhost';
 $username ='"root';
 $password = '';
-$dbname = 'exam_2022';
+$dbname = 'task_manager';
 
 $mysql = new mysqli();
 

@@ -19,7 +19,7 @@ if (isset($_POST['name'])) {
 
     if (empty($errors)) {
         $obj_admin->addEmployee($name, $surname, $multiTask);
-        header('Location: main.php');
+        // header('Location: main.php');
     }
 
 } ?>
